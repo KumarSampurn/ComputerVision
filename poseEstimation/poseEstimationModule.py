@@ -59,8 +59,9 @@ def main():
         
         img=detector.findPose(img,draw=False)
         lmlist=detector.findPosition(img,draw=False)
-        # print(lmlist[0])
-        cv2.circle(img,(lmlist[0][1],lmlist[0][2]),15,(255,0,0),cv2.FILLED)
+        if(len(lmlist)!=0):
+            # print(lmlist[0])
+            cv2.circle(img,(lmlist[0][1],lmlist[0][2]),15,(255,0,0),cv2.FILLED)
         cTime=time.time()
         fps=1/(cTime-pTime)
         pTime=cTime
