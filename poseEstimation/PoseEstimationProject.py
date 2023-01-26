@@ -2,7 +2,7 @@ import cv2
 import time
 import poseEstimationModule as PME
 
-cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture("poseEstimation/videos/1.mp4")
 pTime=0
 detector=PME.poseDetector()
 while True:
@@ -10,10 +10,10 @@ while True:
     img=cv2.flip(img,1)
         
     img=detector.findPose(img,draw=True)
-    lmlist=detector.findPosition(img,draw=True)
+    lmlist=detector.findPosition(img,draw=False)
     if(len(lmlist)!=0):
     # print(lmlist[0])
-        cv2.circle(img,(lmlist[0][1],lmlist[0][2]),15,(255,0,0),cv2.FILLED)
+        cv2.circle(img,(lmlist[0][1],lmlist[0][2]),1,(255,0,0),cv2.FILLED)
     cTime=time.time()
     fps=1/(cTime-pTime)
     pTime=cTime
