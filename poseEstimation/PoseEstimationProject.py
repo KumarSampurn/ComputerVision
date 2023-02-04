@@ -2,7 +2,7 @@ import cv2
 import time
 import poseEstimationModule as PME
 
-cap=cv2.VideoCapture("poseEstimation/videos/1.mp4")
+cap=cv2.VideoCapture(0)
 pTime=0
 detector=PME.poseDetector()
 while True:
