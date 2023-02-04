@@ -2,12 +2,12 @@ import cv2
 import mediapipe as mp
 import time
 
-cap= cv2.VideoCapture("faceDetection/videos/1.mp4")
+cap= cv2.VideoCapture("faceDetection/videos/3.mp4")
 pTime=0
 
 
 mpFaceDetection = mp.solutions.face_detection
-faceDetection=mpFaceDetection.FaceDetection(0.75)
+faceDetection=mpFaceDetection.FaceDetection()
 mpDraw= mp.solutions.drawing_utils
 
 
@@ -17,7 +17,7 @@ while True:
     
     imgRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
     results=faceDetection.process(imgRGB)
-    print(results)
+    # print(results)
         
     if results.detections:
         for id, detection in enumerate(results.detections):
@@ -31,7 +31,7 @@ while True:
             cv2.rectangle(img,bbox,(255,0,255),2)
             cv2.putText(img,str((int)(detection.score[0]*100))+"%",(bbox[0],bbox[1]-20),cv2.FONT_HERSHEY_PLAIN,1.5,(255,0,255),2)
         
-    
+
     cTime=time.time()
     fps=1/(cTime-pTime)
     pTime=cTime
@@ -43,5 +43,5 @@ while True:
     
     
     
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(27) & 0xFF == ord('q'):
           break
