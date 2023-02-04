@@ -24,6 +24,11 @@ while True:
                 ih,iw,ic = img.shape
                 x,y=int(lms.x * iw) , int(lms.y * ih)
                 print(id,x,y)
+            
+        
+     
+
+
 
     cTime=time.time()
     fps=1/(cTime-pTime)
