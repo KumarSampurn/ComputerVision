@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 
 class FaceDetector():
-    def __init__(self,minDetectionCon=0.5):
+    def __init__(self,minDetectionCon=0.80):
         self.minDetectionCon=minDetectionCon
         self.mpFaceDetection = mp.solutions.face_detection
         self.faceDetection=self.mpFaceDetection.FaceDetection(self.minDetectionCon)
@@ -57,13 +57,13 @@ class FaceDetector():
         
       
 def main():
-    cap= cv2.VideoCapture("faceDetection/videos/6.mp4")
+    cap= cv2.VideoCapture(0)
     pTime=0
     detector=FaceDetector()
     
     while True:
         _,img=cap.read()
-        cv2.flip(img,1)
+        img = cv2.flip(img, 1)
         img,bboxs=detector.findFaces(img)
         
         cTime=time.time()
